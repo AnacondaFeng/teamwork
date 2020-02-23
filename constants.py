@@ -1,7 +1,7 @@
 # 人员信息路径
 MEMBERS_INFO_PATH = './members_info'
 
-#小组信息
+# 小组信息
 TEAM_MANAGE = '0'
 TEAM_EXPERT = '1'
 TEAM_SA = '2'
@@ -13,8 +13,20 @@ TEAM_APS = '7'
 TEAM_EQSYS = '8'
 TEAM_ANALYSIS = '9'
 TEAM_REPORT = '10'
+TEAM_NO_EXIST = '?'
 
 # 角色信息
 ROLE_TEAM_LEADER = '0'
 ROLE_TEAM_MEMBER = '1'
 
+# Band分级
+BAND_LEVEL_0 = ['Band5', 'Band6', 'Band7']
+BAND_LEVEL_1 = ['Band8', 'Band9']
+BAND_LEVEL_2 = ['Band10', 'Band11']
+BAND_LEVEL_3 = ['Band12', 'Band13', 'Band14']
+
+# 不同级别增长百分比
+INCOME_INCREASE_PERCENT = 0.3
+
+# 不计算收入组
+NO_INCOME_TEAM = [TEAM_MANAGE, TEAM_EXPERT, TEAM_FRAME, TEAM_NO_EXIST]

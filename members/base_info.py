@@ -1,5 +1,9 @@
+import constants
+
+
 class Member(object):
     """定义人员类"""
+    income = 0  # 年度个人营收指标
 
     def __init__(self, str, mm=12):
         """
@@ -14,3 +18,23 @@ class Member(object):
         self.role = self.rest[4]
         # 2020年投入MM，默认12
         self.mm = mm
+
+    def sum_price_mm(self, price):
+        """依照价格返回营收目标"""
+        # 依照Band判断分级
+        self.income = int(self.mm) / 12 * price * self.band_sel
+        return self.income
+
+    @property
+    def band_sel(self):
+        """依照个人Band进行分级"""
+        init_num = 1
+        if self.band in constants.BAND_LEVEL_1:
+            init_num += constants.INCOME_INCREASE_PERCENT
+        elif self.band in constants.BAND_LEVEL_2:
+            init_num += constants.INCOME_INCREASE_PERCENT * 2
+        elif self.band in constants.BAND_LEVEL_3:
+            init_num += constants.INCOME_INCREASE_PERCENT * 3
+        else:
+            init_num
+        return init_num
