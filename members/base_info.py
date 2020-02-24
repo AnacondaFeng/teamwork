@@ -5,7 +5,7 @@ class Member(object):
     """定义人员类"""
     income = 0  # 年度个人营收指标
 
-    def __init__(self, str, mm=12):
+    def __init__(self, str):
         """
         初始化构造方法
         :param str: 人员信息str
@@ -17,12 +17,18 @@ class Member(object):
         self.team = self.rest[3]
         self.role = self.rest[4]
         # 2020年投入MM，默认12
-        self.mm = mm
+        if len(self.rest) == 6:
+            self.mm = int(self.rest[5])
+        else:
+            self.mm = 12
 
     def sum_price_mm(self, price):
         """依照价格返回营收目标"""
         # 依照Band判断分级
         self.income = int(self.mm) / 12 * price * self.band_sel
+        # 保留两位小数
+        # print('%.2f' % self.income)
+        self.income = float('%.2f' % self.income)
         return self.income
 
     @property
