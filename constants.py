@@ -1,7 +1,7 @@
 # 人员信息路径
-MEMBERS_INFO_PATH = './members_info'
+MEMBERS_INFO_PATH = './input/members_info'
 # 招聘需求信息路径
-MEMBERS_NEW_INFO_PATH = './new_members_info'
+MEMBERS_NEW_INFO_PATH = './input/new_members_info'
 # 结果输出路径
 OUTPUT_INFO_PATH = './output/rest'
 

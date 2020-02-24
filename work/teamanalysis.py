@@ -118,8 +118,8 @@ class TAnalysis(object):
         :param target:营收目标
         :return: 整理好的文档，组别 人员 收益
         """
-        #    1.target是总目标，要先知道总MM，然后算单价，计算出来的是平均值，和Band还没有关系
-        #     2.按照基础88万/每人 计算，求和，不满足要求，继续往上增加
+        #    1.target是总目标，要先知道总MM，然后算单价，计算出来的是平均值，和Band还没有关系，所以这个没啥作用
+        #    2.按照基础88万/每人 计算，求和，不满足要求，继续往上增加，这回就和Band有关系了，单独写一个sum_price_mm方法
         print('------------------分隔符-----------------')
         print('MM Cum:{0}, Income:{1}, Average:{2}'.format(self.sum_mm, target, int(target / self.sum_mm * 12)))
 
