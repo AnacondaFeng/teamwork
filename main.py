@@ -2,6 +2,7 @@ import constants
 from work.teamanalysis import TAnalysis
 
 
+
 def main():
     """定义main方法"""
     ta = TAnalysis(constants.MEMBERS_INFO_PATH, constants.MEMBERS_NEW_INFO_PATH)
