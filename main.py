@@ -1,3 +1,5 @@
+import math
+
 import constants
 from work.teamanalysis import TAnalysis
 
@@ -11,8 +13,9 @@ def main():
     #     print('{0}:{1}'.format(k, ta.mem_name_list(k)))
 
     # 年度营收目标6600万，人均年收入目标88万
-    ta.calc_income_all(6600, 88)
+    ta.calc_all(6600, 88)
 
+    # print(math.ceil(1/3))
 
 if __name__ == '__main__':
     main()

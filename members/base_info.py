@@ -4,6 +4,7 @@ import constants
 class Member(object):
     """定义人员类"""
     income = 0  # 年度个人营收指标
+    patent = 0  # 年度专利目标
 
     def __init__(self, str):
         """
@@ -44,3 +45,17 @@ class Member(object):
         else:
             init_num
         return init_num
+
+    def sum_patent(self):
+        """根据Band返回专利数"""
+        if self.band in constants.BAND_LEVEL_0:
+            self.patent = constants.PATENT_0
+        elif self.band in constants.BAND_LEVEL_1:
+            self.patent = constants.PATENT_1
+        elif self.band in constants.BAND_LEVEL_2:
+            self.patent = constants.PATENT_2
+        elif self.band in constants.BAND_LEVEL_3:
+            self.patent = constants.PATENT_3
+
+        return self.patent
+

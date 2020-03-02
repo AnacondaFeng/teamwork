@@ -1,3 +1,5 @@
+import math
+
 import constants
 from members.base_info import Member
 
@@ -41,6 +43,8 @@ class TAnalysis(object):
         # 2.转换成需要使用的格式 对象list
         for i in self.rest:
             self.mem_info = Member(i)
+            # 专利写入
+            self.mem_info.sum_patent()
             self.team_assign_list()
             # 暂时没什么用,求和总MM用，后面增加新人也可以用
             self.mems_list.append(self.mem_info)
@@ -97,9 +101,9 @@ class TAnalysis(object):
         """返回team字典"""
         return self._team_dict
 
-    def mem_name_list(self, team_name):
+    def mem_name_list_income(self, team_name):
         """
-        返回小组成员姓名
+        返回小组成员姓名 + 营收
         :param team_list:小组成员对象组
         :return: 小组成员姓名dict
         """
@@ -112,7 +116,18 @@ class TAnalysis(object):
                 name_leader = '组长：' + i.name + '^' + str(i.income) + '万元'
         return {name_leader: name_list}
 
-    def calc_income_all(self, target, per_income):
+    def mem_name_list_patent(self, team_name):
+        """小组别专利计算"""
+        sum_team_patent = 0
+        name_list = []
+        for i in self.return_team_dict[team_name]:
+            if i.id != team_name:
+                sum_team_patent += i.patent
+                name_list.append(i.name + '^' + str(float('%.2f' % i.patent)) + '个')
+
+        return {team_name + '^' + str(math.ceil(sum_team_patent)) + '个': name_list}
+
+    def calc_all(self, target, per_income):
         """
         计算营收目标分解
         :param target:营收目标
@@ -146,8 +161,9 @@ class TAnalysis(object):
         #     将结果输出至文档
         with open(constants.OUTPUT_INFO_PATH, 'w', encoding='utf-8') as op_file:
             op_file.write(
-                '2020年总人数：{0}人，新招聘人员预估：{4}人，总MM:{1}，营收目标:{2}万元， 目标人均年收入:{3}万元'.format(self.cum_members, self.sum_mm, target,
-                                                                          per_income, self.new_person_cum))
+                '2020年总人数：{0}人，新招聘人员预估：{4}人，总MM:{1}，营收目标:{2}万元， 目标人均年收入:{3}万元'.format(self.cum_members, self.sum_mm,
+                                                                                      target,
+                                                                                      per_income, self.new_person_cum))
             op_file.write('\n\n')
             op_file.write('未计算营收的小组包含：\n')
             for i in constants.NO_INCOME_TEAM.keys():
@@ -171,7 +187,18 @@ class TAnalysis(object):
                 if k in constants.INCOME_TEAM:
                     op_file.write(self.str_team_info(k, v))
                     op_file.write('\n')
-                    op_file.write(str(self.mem_name_list(k)))
+                    op_file.write(str(self.mem_name_list_income(k)))
+                    op_file.write('\n\n')
+
+            op_file.write('{0}'.format("=" * 30))
+            op_file.write('\n')
+            op_file.write('专利统计如下：')
+            op_file.write('\n')
+            op_file.write('专利统计原则：ITC要求Band10以上人均1份专利，Band8/9平均2人一份，Band6/7平均3人一份，新员工没有计算')
+            op_file.write('\n\n')
+            for k, v in self.return_team_dict.items():
+                if k in constants.ALL_TEAM:
+                    op_file.write(str(self.mem_name_list_patent(k)))
                     op_file.write('\n\n')
 
     def list_mem_name(self, team_obj):

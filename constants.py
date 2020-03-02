@@ -36,5 +36,18 @@ INCOME_INCREASE_PERCENT = 0.2
 # NO_INCOME_TEAM = [{TEAM_MANAGE: ''}, {TEAM_EXPERT: ''}, {TEAM_FRAME: ''}, {TEAM_NO_EXIST: ''}]
 NO_INCOME_TEAM = {'经营组': TEAM_MANAGE, '专家组': TEAM_EXPERT, 'Frame组': TEAM_FRAME, '无组': TEAM_NO_EXIST}
 # 计算收入组
-INCOME_TEAM = {'SA组': TEAM_SA, '数据集成组': TEAM_DATA, 'MES组': TEAM_MES, 'WMS组': TEAM_WMS, 'APS组': TEAM_APS, '设备系统组': TEAM_EQSYS, '工业分析组': TEAM_ANALYSIS,
+INCOME_TEAM = {'SA组': TEAM_SA, '数据集成组': TEAM_DATA, 'MES组': TEAM_MES, 'WMS组': TEAM_WMS, 'APS组': TEAM_APS,
+               '设备系统组': TEAM_EQSYS, '工业分析组': TEAM_ANALYSIS,
                '透明化组': TEAM_REPORT}
+
+# 全部小组
+ALL_TEAM = {'经营组': TEAM_MANAGE, '专家组': TEAM_EXPERT, 'Frame组': TEAM_FRAME, 'SA组': TEAM_SA,
+            '数据集成组': TEAM_DATA, 'MES组': TEAM_MES, 'WMS组': TEAM_WMS, 'APS组': TEAM_APS, '设备系统组': TEAM_EQSYS,
+            '工业分析组': TEAM_ANALYSIS,
+            '透明化组': TEAM_REPORT}
+
+# 专利计算逻辑，对应Band Level
+PATENT_0 = 1 / 3
+PATENT_1 = 1 / 2
+PATENT_2 = 1
+PATENT_3 = 1
